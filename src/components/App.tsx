@@ -1,5 +1,6 @@
 import { Dispatch, createContext, useReducer } from 'react';
 
+import Button from './Button';
 import Select from './Select';
 
 interface FormData {
@@ -15,7 +16,8 @@ export type FormDataAction =
   | { type: 'NUM'; payload: number }
   | { type: 'DATE'; payload: number }
   | { type: 'TIME'; payload: number }
-  | { type: 'COMMENTS'; payload: string };
+  | { type: 'COMMENTS'; payload: string }
+  | { type: 'RESET' };
 const initState: FormData = {
   tower: 'A',
   store: 3,
@@ -63,6 +65,8 @@ const Form = () => {
         return {
           ...state,
         };
+      case 'RESET':
+        return initState;
       default:
         return state;
     }
@@ -71,8 +75,18 @@ const Form = () => {
 
   return (
     <FormContext.Provider value={{ data: formData, dispatch }}>
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          console.log(formData);
+        }}
+      >
         <Select options={['A', 'B']} name="TOWER" />
+
+        <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Button type="reset" />
+          <Button type="submit" />
+        </div>
       </form>
     </FormContext.Provider>
   );
@@ -81,7 +95,7 @@ const Form = () => {
 function App() {
   return (
     <>
-      <h1 className="my-6 text-center text-8xl">booking</h1>
+      <h1 className="text-accent my-6 text-center text-8xl">booking</h1>
       <p className="text-center text-3xl">Бронирование переговорной</p>
 
       <Form />
