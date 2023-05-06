@@ -68,6 +68,15 @@
           "caseInsensitive": true
         }
       }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "all",
+        "semi": true,
+        "singleQuote": true,
+        "endOfLine": "auto"
+      }
     ]
   }
 }
