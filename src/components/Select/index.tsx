@@ -47,8 +47,9 @@ const Select = ({
 
   return (
     <select
-      className="w-full border border-gray-200"
+      className="w-full rounded-lg border border-[#4B5E51] bg-[#09090A] px-6 py-2"
       onChange={(e) => dispatch!(getValue(name, e.target.value))}
+      name={name.toLowerCase()}
     >
       {options.map((str, i) => (
         <option key={`option_${str}_${i}`} value={str}>

@@ -72,7 +72,7 @@
     "prettier/prettier": [
       "error",
       {
-        "trailingComma": "all",
+        "trailingComma": false,
         "semi": true,
         "singleQuote": true,
         "endOfLine": "auto"
